@@ -3,7 +3,7 @@ param(
   [string[]]$Items,
   [Parameter()] [string]$Target,
   [int]$Threads = 32,
-  [switch]$Unbuffered, [switch]$Restartable, [switch]$IncludeSubdirs,
+  [switch]$Unbuffered, [switch]$Restartable, [switch]$IncludeSubdirs, [switch]$Move,
   [string]$LogDir = "$env:USERPROFILE\Documents\FastCopyLogs",
   [switch]$ForcePrompt             # <-- add this
 )
@@ -92,8 +92,9 @@ try {
 
   # Common robocopy switches
   $switches = @("/R:1","/W:1","/MT:{0}" -f $Threads,"/ETA")
-  if ($Unbuffered)  { $switches += "/J" }
-  if ($Restartable) { $switches += "/Z" }
+  if ($Unbuffered)  { $switches += "/J"    }
+  if ($Restartable) { $switches += "/Z"    }
+  if ($Move)        { $switches += "/MOVE" }
 
   foreach ($src in $resolved) {
     $item = Get-Item -LiteralPath $src

@@ -39,9 +39,30 @@ $sc2.WindowStyle = 1
 $sc2.IconLocation= "shell32.dll,44"
 $sc2.Save()
 
+# REGULAR shortcut (prompts every time)
+$lnk3 = Join-Path $sendTo "Fast Move (Robocopy).lnk"
+$wsh  = New-Object -ComObject WScript.Shell
+$sc3  = $wsh.CreateShortcut($lnk3)
+$sc3.TargetPath  = $pwsh
+$sc3.Arguments   = "-NoProfile -ExecutionPolicy Bypass -File `"$fastCopyDst`" -IncludeSubdirs -Unbuffered -ForcePrompt -Move"
+$sc3.WindowStyle = 1
+$sc3.IconLocation= "shell32.dll,44"
+$sc3.Save()
+
+# DEBUG shortcut (keeps console open)
+$lnk4 = Join-Path $sendTo "Fast Move (DEBUG).lnk"
+$sc4  = $wsh.CreateShortcut($lnk4)
+$sc4.TargetPath  = $pwsh
+$sc4.Arguments   = "-NoExit -NoProfile -ExecutionPolicy Bypass -File `"$fastCopyDst`" -IncludeSubdirs -Unbuffered -ForcePrompt -Move"
+$sc4.WindowStyle = 1
+$sc4.IconLocation= "shell32.dll,44"
+$sc4.Save()
+
 Write-Host "SendTo shortcuts installed:" -ForegroundColor Green
 Write-Host "  - $lnk1" -ForegroundColor Green
 Write-Host "  - $lnk2" -ForegroundColor Yellow
+Write-Host "  - $lnk3" -ForegroundColor Green
+Write-Host "  - $lnk4" -ForegroundColor Yellow
 
 if ($AddBackgroundMenu) {
   $key = "HKCU:\Software\Classes\Directory\Background\shell\FastPasteRobocopy"
