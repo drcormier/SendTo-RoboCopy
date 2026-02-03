@@ -64,6 +64,8 @@ Right-click installer details
 -----------------------------
 • “Fast Copy (Robocopy)” – prompts for a destination every run (-ForcePrompt), copies selected items, preserves names, uses /MT and optional /J.  
 • “Fast Copy (DEBUG)” – same as above but keeps the console open (-NoExit) for live diagnostics.  
+• “Fast Move (Robocopy)” – prompts for a destination every run (-ForcePrompt), moves selected items, preserves names, uses /MT and optional /J.  
+• “Fast Move (DEBUG)” – same as above but keeps the console open (-NoExit) for live diagnostics.  
 • “Fast Paste here (Robocopy)” (optional) – appears on empty space inside folders and uses that folder as the destination (you then pick sources).  
 • The helper remembers your last destination (HKCU\Software\FastCopy\LastTarget). Clear that value or use -ForcePrompt to ensure a prompt every time.
 
@@ -77,7 +79,7 @@ Troubleshooting
 
 Uninstall
 ---------
-• Remove Send-To shortcuts from %APPDATA%\Microsoft\Windows\SendTo (Fast Copy *.lnk).  
+• Remove Send-To shortcuts from %APPDATA%\Microsoft\Windows\SendTo (Fast Copy *.lnk) and (Fast Move *.lnk).
 • If added, remove the background menu key HKCU\Software\Classes\Directory\Background\shell\FastPasteRobocopy.  
 • To restore the modern right‑click menu, import Restore_Win11_Modern_Context_Menu.reg and restart Explorer.
 
