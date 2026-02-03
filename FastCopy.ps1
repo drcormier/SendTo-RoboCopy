@@ -39,7 +39,7 @@ function Info($m){ Write-Host "[INFO] $m" }
 
 try {
   Info "FastCopy started at $(Get-Date)"
-  Info "Args: Items=$($Items -join ' | '); Target=$Target; Threads=$Threads; Unbuffered=$Unbuffered; Restartable=$Restartable; IncludeSubdirs=$IncludeSubdirs"
+  Info "Args: Items=$($Items -join ' | '); Target=$Target; Threads=$Threads; Unbuffered=$Unbuffered; Restartable=$Restartable; IncludeSubdirs=$IncludeSubdirs, Move=$Move"
 
   Add-Type -AssemblyName System.Windows.Forms | Out-Null
 
